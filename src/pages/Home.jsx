@@ -223,10 +223,12 @@ function Home() {
         </section>
 
         {/* FOOTER */}
-        <footer className="bg-black text-gray-400 py-8 text-center">
+        <footer className="bg-purple-800 text-gray-400 py-8 text-center">
           <h3 className="text-2xl font-bold text-white">TicketNG</h3>
 
-          <p className="mt-4">© 2026 Eventify. All rights reserved.</p>
+          <p className="mt-4 text-white">
+            © 2026 Eventify. All rights reserved.
+          </p>
         </footer>
       </div>
     </div>
