@@ -82,7 +82,7 @@ function MyTicket() {
                 <span className="pl-25">⏰ {ticket.event.time}</span>
                 <p>
                   <span>📍 {ticket.event.location}</span>
-                  <span className="font-semibold pl-17">Quantity:</span>{" "}
+                  <span className="font-semibold pl-5">Quantity:</span>{" "}
                   {ticket.customer.quantity}{" "}
                 </p>
 
