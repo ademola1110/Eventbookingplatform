@@ -10,27 +10,28 @@ function Navbar() {
     setTicketCount(tickets.length);
   }, []);
 
-  return (
-    <div className="flex gap-5 justify-between bg-purple-600 md:px-10 py-5 px-7">
-      <div className="text-white font-bold text-xl">TicketNG</div>
-      <div className="flex gap-10 text-white">
-        <p>
-          <Link to="/">Home</Link>
-        </p>
+  
 
-        <p>
-          <Link to="/events">Events</Link>
-        </p>
-        {/* Ticket Link */}
+  return (
+    <div className="flex items-center justify-between bg-purple-600 px-10 md:px-10 py-4">
+      <div className="text-white font-bold text-xl">TicketNG</div>
+
+      <div className="flex items-center gap-4 sm:gap-6 md:gap-10 text-white text-sm sm:text-base">
+        <Link to="/" className="hover:text-gray-200">
+          Home
+        </Link>
+
+        <Link to="/events" className="hover:text-gray-200">
+          Events
+        </Link>
 
         <Link
           to="/tickets"
-          className="relative font-semibold text-white"
+          className="relative font-semibold hover:text-gray-200"
         >
           Tickets
-          {/* Count Badge */}
           {ticketCount > 0 && (
-            <span className="absolute -top-3 -right-5 bg-white text-purple-600 text-xs w-6 h-6 flex items-center justify-center rounded-full">
+            <span className="absolute -top-2 -right-4 bg-white text-purple-600 text-xs w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full">
               {ticketCount}
             </span>
           )}
