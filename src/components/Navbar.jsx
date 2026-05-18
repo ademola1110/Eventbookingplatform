@@ -11,7 +11,7 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="flex justify-between bg-purple-600 md:px-10 py-5 px-7">
+    <div className="flex gap-5 justify-between bg-purple-600 md:px-10 py-5 px-7">
       <div className="text-white font-bold text-xl">TicketNG</div>
       <div className="flex gap-10 text-white">
         <p>
