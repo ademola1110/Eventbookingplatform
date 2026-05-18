@@ -2,8 +2,11 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
+
 function MyTicket() {
   const [tickets, setTickets] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   // Load tickets ONLY
   useEffect(() => {
@@ -12,15 +15,22 @@ function MyTicket() {
     setTickets(savedTickets);
   }, []);
 
-  // Cancel ticket
+  
   const cancelTicket = (index) => {
-    const updatedTickets = tickets.filter((_, i) => i !== index);
+    setSelectedIndex(index);
+    setShowModal(true);
+  };
+
+  const confirmCancel = () => {
+    const updatedTickets = tickets.filter((_, i) => i !== selectedIndex);
 
     setTickets(updatedTickets);
 
     localStorage.setItem("tickets", JSON.stringify(updatedTickets));
 
     window.dispatchEvent(new Event("ticketUpdated"));
+
+    setShowModal(false);
   };
 
   if (tickets.length === 0) {
@@ -94,7 +104,7 @@ function MyTicket() {
                     onClick={() => cancelTicket(index)}
                     className="flex-1 bg-red-500 text-white py-2 rounded-xl"
                   >
-                    Cancel
+                    Delete
                   </button>
                 </div>
               </div>
@@ -102,6 +112,34 @@ function MyTicket() {
           })}
         </div>
       </div>
+      {/* CONFIRM MODAL */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-3xl shadow-2xl w-[90%] max-w-md text-center">
+            <h2 className="text-2xl font-bold mb-4">Delete Ticket?</h2>
+
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to delete this ticket?
+            </p>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="flex-1 bg-gray-300 py-3 rounded-xl font-semibold"
+              >
+                No
+              </button>
+
+              <button
+                onClick={confirmCancel}
+                className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold"
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
